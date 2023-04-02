@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.bqliang.running.diary.ui.main.MainViewModel" />
+    </data>
+
+    <ScrollView
+        android:background="?attr/colorSurfaceVariant"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="30dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/avatar"
+                    android:layout_width="88dp"
+                    android:layout_height="88dp"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearance="@style/CircleImageView"
+                    tools:src="@tools:sample/avatars" />
+            </FrameLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1px" />
+
+            <RelativeLayout
+                android:id="@+id/item_username"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/listPreferredItemHeightSmall"
+                android:background="?attr/colorSurface"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingStart="?attr/listPreferredItemPaddingStart"
+                android:paddingEnd="?attr/listPreferredItemPaddingEnd">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="用户名"
+                    tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icon_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/round_chevron_right_24"
+                    tools:ignore="RtlHardcoded" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@id/icon_username"
+                    android:text="@{viewModel.username}"
+                    tools:ignore="RelativeOverlap,RtlHardcoded"
+                    tools:text="bqliang" />
+            </RelativeLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1px" />
+
+            <RelativeLayout
+                android:id="@+id/item_sex"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/listPreferredItemHeightSmall"
+                android:background="?attr/colorSurface"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingStart="?attr/listPreferredItemPaddingStart"
+                android:paddingEnd="?attr/listPreferredItemPaddingEnd">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="性别"
+                    tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icon_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/round_chevron_right_24"
+                    tools:ignore="RtlHardcoded" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@id/icon_sex"
+                    android:text="@{viewModel.sex}"
+                    tools:ignore="RelativeOverlap,RtlHardcoded"
+                    tools:text="男" />
+            </RelativeLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1px" />
+
+            <RelativeLayout
+                android:id="@+id/item_birthdate"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/listPreferredItemHeightSmall"
+                android:background="?attr/colorSurface"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingStart="?attr/listPreferredItemPaddingStart"
+                android:paddingEnd="?attr/listPreferredItemPaddingEnd">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="出生日期"
+                    tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icon_birthdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/round_chevron_right_24"
+                    tools:ignore="RtlHardcoded" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/birthdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@id/icon_birthdate"
+                    tools:ignore="RelativeOverlap,RtlHardcoded"
+                    tools:text="2001-02-03" />
+            </RelativeLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1px" />
+
+            <RelativeLayout
+                android:id="@+id/item_signature"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/listPreferredItemHeightSmall"
+                android:background="?attr/colorSurface"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingStart="?attr/listPreferredItemPaddingStart"
+                android:paddingEnd="?attr/listPreferredItemPaddingEnd">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="个性签名"
+                    tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icon_signature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/round_chevron_right_24"
+                    tools:ignore="RtlHardcoded" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/signature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@id/icon_signature"
+                    android:text="@{viewModel.signature}"
+                    tools:ignore="RelativeOverlap,RtlHardcoded"
+                    tools:text="这个人很神秘，什么都没有写" />
+            </RelativeLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1px" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:background="@android:color/transparent" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1px" />
+
+            <RelativeLayout
+                android:id="@+id/item_short_id"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/listPreferredItemHeightSmall"
+                android:background="?attr/colorSurface"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingStart="?attr/listPreferredItemPaddingStart"
+                android:paddingEnd="?attr/listPreferredItemPaddingEnd">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="UUID"
+                    tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/short_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    tools:ignore="RelativeOverlap,RtlHardcoded"
+                    tools:text="sghdj232" />
+            </RelativeLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1px" />
+
+            <RelativeLayout
+                android:id="@+id/item_email"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/listPreferredItemHeightSmall"
+                android:background="?attr/colorSurface"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingStart="?attr/listPreferredItemPaddingStart"
+                android:paddingEnd="?attr/listPreferredItemPaddingEnd">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="邮箱地址"
+                    tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icon_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/round_chevron_right_24"
+                    tools:ignore="RtlHardcoded" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@id/icon_email"
+                    android:text="@{viewModel.email}"
+                    tools:ignore="RelativeOverlap,RtlHardcoded"
+                    tools:text="bqlaing@outlook.com" />
+            </RelativeLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1px" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="18dp"
+                android:background="@android:color/transparent" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1px" />
+
+            <RelativeLayout
+                android:id="@+id/item_goal_week"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/listPreferredItemHeightSmall"
+                android:background="?attr/colorSurface"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingStart="?attr/listPreferredItemPaddingStart"
+                android:paddingEnd="?attr/listPreferredItemPaddingEnd">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="周目标"
+                    tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icon_goal_week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/round_chevron_right_24"
+                    tools:ignore="RtlHardcoded" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/goal_week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@id/icon_goal_week"
+                    android:text='@{String.format("%d 公里", viewModel.goalWeek)}'
+                    tools:ignore="RelativeOverlap,RtlHardcoded"
+                    tools:text="5 公里" />
+            </RelativeLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1px" />
+
+            <RelativeLayout
+                android:id="@+id/item_goal_month"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/listPreferredItemHeightSmall"
+                android:background="?attr/colorSurface"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingStart="?attr/listPreferredItemPaddingStart"
+                android:paddingEnd="?attr/listPreferredItemPaddingEnd">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="月目标"
+                    tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icon_goal_month"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/round_chevron_right_24"
+                    tools:ignore="RtlHardcoded" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/goal_month"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@id/icon_goal_month"
+                    android:text='@{String.format("%d 公里", viewModel.goalMonth)}'
+                    tools:ignore="RelativeOverlap,RtlHardcoded"
+                    tools:text="20 公里" />
+            </RelativeLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1px" />
+
+            <RelativeLayout
+                android:id="@+id/item_goal_year"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/listPreferredItemHeightSmall"
+                android:background="?attr/colorSurface"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingStart="?attr/listPreferredItemPaddingStart"
+                android:paddingEnd="?attr/listPreferredItemPaddingEnd">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="年目标"
+                    tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icon_goal_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/round_chevron_right_24"
+                    tools:ignore="RtlHardcoded" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/goal_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@id/icon_goal_year"
+                    android:text='@{String.format("%d 公里", viewModel.goalYear)}'
+                    tools:ignore="RelativeOverlap,RtlHardcoded"
+                    tools:text="200 公里" />
+            </RelativeLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1px" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </ScrollView>
+</layout>

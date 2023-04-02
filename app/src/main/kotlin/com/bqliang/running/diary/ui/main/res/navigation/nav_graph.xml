@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    android:label="@string/app_name"
+    app:startDestination="@id/run_list_fragment">
+
+    <fragment
+        android:id="@+id/run_list_fragment"
+        android:name="com.bqliang.running.diary.ui.run.RunListFragment"
+        android:label="跑步记录"
+        tools:layout="@layout/fragment_run_list">
+        <action
+            android:id="@+id/action_run_list_fragment_to_tracking_activity"
+            app:destination="@id/tracking_activity" />
+        <action
+            android:id="@+id/action_run_list_fragment_to_nav_graph_authentication"
+            app:destination="@id/nav_graph_authentication"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_run_list_fragment_to_detail_activity"
+            app:destination="@id/detail_activity" />
+    </fragment>
+    <fragment
+        android:id="@+id/settings_fragment"
+        android:name="com.bqliang.running.diary.ui.settings.MySettingsFragment"
+        android:label="设置" />
+    <activity
+        android:id="@+id/about_activity"
+        android:name="com.bqliang.running.diary.ui.about.AboutActivity"
+        android:label="关于" />
+    <activity
+        tools:layout="@layout/activity_tracking"
+        android:id="@+id/tracking_activity"
+        android:name="com.bqliang.running.diary.ui.tracking.TrackingActivity" />
+    <activity
+        android:id="@+id/detail_activity"
+        android:name="com.bqliang.running.diary.ui.detail.DetailActivity"
+        android:label="跑步详情" >
+        <argument
+            android:name="run_id"
+            app:argType="long" />
+    </activity>
+    <fragment
+        android:id="@+id/help_and_support_fragment"
+        android:name="com.bqliang.running.diary.ui.document.HelpAndSupportFragment"
+        android:label="帮助与支持" />
+
+    <navigation android:id="@+id/nav_graph_authentication"
+        app:startDestination="@id/login_fragment">
+        <fragment
+            android:id="@+id/register_fragment"
+            android:name="com.bqliang.running.diary.ui.authentication.RegisterFragment"
+            tools:layout="@layout/fragment_register" />
+        <fragment
+            android:id="@+id/login_fragment"
+            android:name="com.bqliang.running.diary.ui.authentication.LoginFragment"
+            tools:layout="@layout/fragment_login">
+            <action
+                android:id="@+id/action_login_fragment_to_register_fragment"
+                app:destination="@id/register_fragment" />
+            <action
+                android:id="@+id/action_login_fragment_to_run_list_fragment"
+                app:destination="@id/run_list_fragment"
+                app:popUpTo="@id/nav_graph_authentication"
+                app:popUpToInclusive="true" />
+        </fragment>
+    </navigation>
+    <fragment
+        android:id="@+id/knowledge_fragment"
+        android:name="com.bqliang.running.diary.ui.knowledge.KnowledgeFragment"
+        android:label="跑步知识地图" />
+    <fragment
+        android:id="@+id/body_list_fragment"
+        android:name="com.bqliang.running.diary.ui.body.BodyListFragment"
+        android:label="身高体重">
+        <action
+            android:id="@+id/action_bodyListFragment_to_addBodyFragment"
+            app:destination="@id/add_body_fragment" />
+        <action
+            android:id="@+id/action_body_list_fragment_to_weight_chart_activity"
+            app:destination="@id/weightChartActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/add_body_fragment"
+        android:name="com.bqliang.running.diary.ui.body.AddBodyFragment"
+        android:label="添加/编辑" >
+        <argument
+            android:name="body_id"
+            app:argType="long"
+            android:defaultValue="-1L" />
+    </fragment>
+    <fragment
+        android:id="@+id/personal_fragment"
+        android:name="com.bqliang.running.diary.ui.personal.PersonalFragment"
+        android:label="个人中心" />
+    <fragment
+        android:id="@+id/news_fragment"
+        android:name="com.bqliang.running.diary.ui.news.NewsFragment"
+        android:label="运动资讯">
+        <action
+            android:id="@+id/action_newsFragment_to_newsDetailsActivity"
+            app:destination="@id/news_details_activity"
+            app:popUpTo="@id/news_details_activity"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <activity
+        android:id="@+id/news_details_activity"
+        android:name="com.bqliang.running.diary.ui.news.NewsDetailsActivity"
+        android:label="资讯详情">
+        <argument
+            android:name="news_title_res_id"
+            app:argType="integer" />
+        <argument
+            android:name="news_content_res_id"
+            app:argType="integer" />
+        <argument
+            android:name="news_image_res_id"
+            app:argType="integer" />
+    </activity>
+    <fragment
+        android:id="@+id/course_list_fragment"
+        android:name="com.bqliang.running.diary.ui.course.CourseListFragment"
+        android:label="跑步课程" >
+        <action
+            android:id="@+id/action_course_list_fragment_to_course_details_fragment"
+            app:destination="@id/course_details_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/course_details_fragment"
+        android:name="com.bqliang.running.diary.ui.course.CourseDetailsFragment" >
+        <argument
+            android:name="course"
+            app:argType="com.bqliang.running.diary.ui.course.model.Course" />
+        <action
+            android:id="@+id/action_course_details_fragment_to_actions_activity"
+            app:destination="@id/actions_activity" />
+        <action
+            android:id="@+id/action_course_details_fragment_to_video_activity"
+            app:destination="@id/video_activity" />
+    </fragment>
+    <activity
+        android:id="@+id/actions_activity"
+        android:name="com.bqliang.running.diary.ui.course.ActionsActivity" >
+        <argument
+            android:name="fitness_actions"
+            app:argType="com.bqliang.running.diary.ui.course.model.FitnessAction[]" />
+        <argument
+            android:name="current_action_index"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </activity>
+    <activity
+        android:id="@+id/video_activity"
+        android:name="com.bqliang.running.diary.ui.course.VideoActivity" />
+    <fragment
+        android:id="@+id/statistics_fragment"
+        android:name="com.bqliang.running.diary.ui.statistics.StatisticsFragment"
+        android:label="运动统计" />
+    <action
+        android:id="@+id/action_global_nav_graph_authentication"
+        app:destination="@id/nav_graph_authentication"
+        app:popUpTo="@id/nav_graph"
+        app:popUpToInclusive="true" />
+    <activity
+        tools:layout="@layout/activity_weight_chart"
+        android:id="@+id/weightChartActivity"
+        android:name="com.bqliang.running.diary.ui.body.WeightChartActivity"
+        android:label="WeightChartActivity" />
+</navigation>

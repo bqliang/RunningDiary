@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="gradient_end">@android:color/background_dark</color>
+
+    <color name="progressView_labelColorInner">@android:color/black</color>
+    <color name="progressView_labelColorOuter">@android:color/white</color>
+
+    <color name="collapsingToolbarImageFilter">#59000000</color>
+
+</resources>

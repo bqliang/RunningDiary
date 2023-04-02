@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/group"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/run_list_fragment"
+            android:icon="@drawable/ic_round_sports_score_24"
+            android:title="跑步记录" />
+        <item
+            android:id="@+id/body_list_fragment"
+            android:icon="@drawable/round_monitor_weight_24"
+            android:title="身高体重" />
+
+        <item
+            android:id="@+id/personal_fragment"
+            android:icon="@drawable/ic_round_account_box_24"
+            android:title="个人中心" />
+
+        <item
+            android:id="@+id/statistics_fragment"
+            android:icon="@drawable/ic_round_analytics_24"
+            android:title="运动量" />
+
+        <item
+            android:id="@+id/course_list_fragment"
+            android:icon="@drawable/ic_round_play_lesson_24"
+            android:title="跑步课程" />
+
+        <item
+            android:id="@+id/news_fragment"
+            android:icon="@drawable/round_newspaper_24"
+            android:title="运动资讯" />
+    </group>
+
+    <group>
+        <item
+            android:id="@+id/other_item"
+            android:title="其他">
+
+            <menu>
+                <item
+                    android:id="@+id/settings_fragment"
+                    android:icon="@drawable/round_settings_24"
+                    android:title="设置" />
+                <item
+                    android:id="@+id/about_activity"
+                    android:icon="@drawable/round_info_24"
+                    android:title="关于" />
+                <item
+                    android:id="@+id/knowledge_fragment"
+                    android:icon="@drawable/round_local_library_24"
+                    android:title="跑步知识地图" />
+
+                <item
+                    android:id="@+id/help_and_support_fragment"
+                    android:icon="@drawable/round_help_24"
+                    android:title="帮助与支持" />
+                
+            </menu>
+
+        </item>
+    </group>
+</menu>

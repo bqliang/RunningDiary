@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.bqliang.running.diary.ui.detail.DetailViewModel" />
+    </data>
+
+    <!-- 注意 bottom 只有 insert padding -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="16dp"
+        app:fitsSystemWindowsInsets="bottom">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="跑步日记"
+            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/note_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@id/fab"
+            app:layout_constraintTop_toBottomOf="@id/headline">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/note_input"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:text="@{viewModel.run.note}"
+                tools:text="我今天跑了10公里，感觉很棒。下次要跑更远的路。" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- 父布局左右有 padding 而底部没有，所以给底侧加 margin -->
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="保存"
+            app:icon="@drawable/round_save_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

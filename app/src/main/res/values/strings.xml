@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">跑步日记</string>
+
+    <!-- run item -->
+    <string name="run_item_supporting_text" translatable="false">%1$s  %2$d Kcal\n%3$d\'%4$d\"/km</string>
+
+    <string name="read_and_agree" translatable="false"><![CDATA[我已阅读并同意%s]]></string>
+
+
+    <!-- Preference Key -->
+    <string name="pref_run_goal_week">pref_run_goal_week</string>
+    <string name="pref_run_goal_month">pref_run_goal_month</string>
+    <string name="pref_run_goal_year">pref_run_goal_year</string>
+    <string name="pref_log_out">pref_log_out</string>
+    <string name="pref_rotate_map_follow_orientation">pref_rotate_map_follow_orientation</string>
+    <string name="pref_is_need_map_match">pref_is_need_map_match</string>
+    <string name="pref_dark_mode">pref_dark_mode</string>
+</resources>

@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.bqliang.running.diary",
+  "variantName": "armeabi-v7aRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 1,
+      "versionName": "1.0",
+      "outputFile": "Running Diary-1.0-armeabi-v7a-release.apk"
+    }
+  ],
+  "elementType": "File"
+}

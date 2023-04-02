@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="?attr/selectableItemBackground"
+        android:paddingVertical="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="24dp">
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/colorPrimaryContainer"
+            android:scaleType="center"
+            android:tint="?attr/colorOnPrimaryContainer"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearance="@style/CircleImageView"
+            app:srcCompat="@drawable/round_data_thresholding_24" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/headline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+            app:layout_constraintBottom_toTopOf="@+id/supporting_text"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toRightOf="@id/icon"
+            app:layout_constraintRight_toLeftOf="@id/trailing_supporting_text"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="68.85kg 172.5cm" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/supporting_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/headline"
+            app:layout_constraintRight_toLeftOf="@id/trailing_supporting_text"
+            app:layout_constraintTop_toBottomOf="@+id/headline"
+            tools:text="2023/02/28  BMI: 23  正常" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/trailing_supporting_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="24dp"
+            android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="+0.5" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

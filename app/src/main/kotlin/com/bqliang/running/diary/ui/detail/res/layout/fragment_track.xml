@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.bqliang.running.diary.ui.detail.DetailViewModel" />
+
+        <import type="com.bqliang.running.diary.utils.Converter" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- 地图 -->
+        <com.bqliang.running.diary.ui.base.MyTextureMapView
+            android:id="@+id/texture_map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:mapType="@{viewModel.mapType}" />
+
+        <!-- ============================ 地图右上角按钮 START ============================ -->
+        <!-- 定位按钮 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/locate_btn"
+            style="?attr/materialIconButtonFilledTonalStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="8dp"
+            app:icon="@drawable/twotone_my_location_24"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlHardcoded" />
+
+        <!-- 切换地图图层按钮 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/layer_switch_btn"
+            style="?attr/materialIconButtonFilledTonalStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            app:icon="@drawable/twotone_layers_24"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/locate_btn"
+            tools:ignore="RtlHardcoded" />
+
+        <!-- 导出路线按钮 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/export_btn"
+            style="?attr/materialIconButtonFilledTonalStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            app:icon="@drawable/twotone_route_24"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layer_switch_btn"
+            tools:ignore="RtlHardcoded" />
+        <!-- ============================  地图右上角按钮 END  ============================ -->
+
+        <!-- ============================ 辅助线 START ============================ -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_left"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_right"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="20dp" />
+        <!-- ============================  辅助线 END  ============================ -->
+
+        <!-- 渐变背景 -->
+        <View
+            android:id="@+id/background_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_gradient"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/distance" />
+
+        <!-- 跑步公里数 -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:text='@{String.format("%.2f", viewModel.run.distanceInMeter / 1000)}'
+            android:textAppearance="@style/TextAppearance.Material3.DisplayMedium"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/time"
+            app:layout_constraintLeft_toLeftOf="@id/guideline_left"
+            tools:text="4.75" />
+
+        <!-- 跑步公里单位 -->
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="公里"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            app:layout_constraintBaseline_toBaselineOf="@+id/distance"
+            app:layout_constraintLeft_toRightOf="@id/distance" />
+
+        <!-- 跑步开始时间 -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@{Converter.millsSecondsDateTimeFormat(viewModel.run.startTime)}"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            app:layout_constraintBottom_toTopOf="@id/divider"
+            app:layout_constraintLeft_toRightOf="@id/guideline_left"
+            tools:text="2023/02/24  06:37" />
+
+        <!-- 分割线 -->
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@id/duration_title"
+            app:layout_constraintLeft_toLeftOf="@id/guideline_left"
+            app:layout_constraintRight_toRightOf="@id/guideline_right" />
+
+        <!-- ============================ 数据单位 START ============================ -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/duration_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="运动时间"
+            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+            app:layout_constraintBottom_toTopOf="@id/duration"
+            app:layout_constraintLeft_toLeftOf="@id/duration" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/pace_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="配速"
+            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+            app:layout_constraintBaseline_toBaselineOf="@id/duration_title"
+            app:layout_constraintLeft_toLeftOf="@id/pace" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/calorie_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="热量"
+            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+            app:layout_constraintBaseline_toBaselineOf="@id/pace_title"
+            app:layout_constraintLeft_toLeftOf="@id/calorie" />
+        <!-- ============================  数据单位 END  ============================ -->
+
+
+        <!-- 跑步总时长 -->
+        <!-- fitsSystemWindowsInsets 设置 margin -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp"
+            android:text="@{Converter.millisecondsHmsFormat(viewModel.run.durationInMilliseconds)}"
+            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/pace"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="@id/guideline_left"
+            app:layout_fitsSystemWindowsInsets="bottom"
+            tools:text="00:00:00" />
+
+        <!-- 跑步配速 -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/pace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.paceString}"
+            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+            android:textSize="18sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/duration"
+            app:layout_constraintEnd_toStartOf="@+id/calorie"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/duration"
+            tools:text="7'45''" />
+
+        <!-- 跑步热量 -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/calorie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(viewModel.run.caloriesInKcal)}"
+            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+            android:textSize="18sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/pace"
+            app:layout_constraintEnd_toEndOf="@id/guideline_right"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/pace"
+            tools:text="40" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

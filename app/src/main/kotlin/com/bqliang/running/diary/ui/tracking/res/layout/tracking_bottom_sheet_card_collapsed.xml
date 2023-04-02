@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.bqliang.running.diary.services.TrackingService.Companion" />
+
+        <variable
+            name="viewModel"
+            type="com.bqliang.running.diary.ui.tracking.TrackingViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- 时间、路程、配速 -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/duration"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@+id/distance"
+            app:layout_constraintEnd_toStartOf="@+id/distance"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="35:55" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:text='@{String.format("%.2f", (data.previousLapsDistanceInMeter + data.curLapDistanceInMeter) / 1000)}'
+            android:id="@+id/distance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@+id/pace"
+            app:layout_constraintEnd_toStartOf="@+id/pace"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/duration"
+            tools:text="3.67" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/pace"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/distance"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="--" />
+
+        <!-- 时间、路程、配速的子标题 -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/duration_subtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="跑步时长"
+            android:textSize="@dimen/dashboard_subtitle_font_size"
+            app:layout_constraintBaseline_toBaselineOf="@+id/distance_subtitle"
+            app:layout_constraintEnd_toStartOf="@+id/distance_subtitle"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/distance_subtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="路程(km)"
+            android:textSize="@dimen/dashboard_subtitle_font_size"
+            app:layout_constraintBaseline_toBaselineOf="@+id/pace_subtitle"
+            app:layout_constraintEnd_toStartOf="@+id/pace_subtitle"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/duration_subtitle" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/pace_subtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="配速(min/km)"
+            android:textSize="@dimen/dashboard_subtitle_font_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/distance_subtitle"
+            app:layout_constraintTop_toBottomOf="@id/pace" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

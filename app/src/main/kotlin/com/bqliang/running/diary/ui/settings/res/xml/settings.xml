@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:icon="@drawable/round_outlined_flag_24"
+        app:key="run_goal_category"
+        app:title="运动目标">
+
+        <Preference
+            app:key="@string/pref_run_goal_week"
+            app:title="周运动目标" />
+
+        <Preference
+            app:key="@string/pref_run_goal_month"
+            app:title="月运动目标" />
+
+        <Preference
+            app:key="@string/pref_run_goal_year"
+            app:title="年运动目标" />
+
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
+        app:key="preference_category"
+        app:title="偏好设置">
+
+        <com.bqliang.running.diary.ui.base.MaterialSwitchPreference
+            app:icon="@drawable/round_screen_rotation_24"
+            app:defaultValue="false"
+            app:key="@string/pref_rotate_map_follow_orientation"
+            app:summary="开启后，地图将会随着设备方向旋转。"
+            app:title="地图跟随设备方向旋转" />
+
+        <com.bqliang.running.diary.ui.base.MaterialSwitchPreference
+            app:icon="@drawable/round_route_24"
+            app:defaultValue="false"
+            app:key="@string/pref_is_need_map_match"
+            app:summary="开启后，将会把运动轨迹绑定到道路上，使得轨迹更加平滑。"
+            app:title="绑路" />
+
+        <rikka.preference.SimpleMenuPreference
+            app:defaultValue="system"
+            app:entries="@array/list_dark_mode"
+            app:entryValues="@array/list_dark_mode_value"
+            app:icon="@drawable/round_dark_mode_24"
+            app:key="@string/pref_dark_mode"
+            app:summary="%s"
+            app:title="深色模式" />
+
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
+        app:key="preference_notification"
+        app:title="资讯推送">
+
+        <com.bqliang.running.diary.ui.base.MaterialSwitchPreference
+            app:icon="@drawable/round_newspaper_24"
+            app:defaultValue="false"
+            app:key="enable_daily_news"
+            app:summary="开启后，将会不定时为您推送今日运动资讯。"
+            app:title="运动资讯推送" />
+
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
+        app:key="account_category"
+        app:title="个人账号">
+
+        <Preference
+            app:icon="@drawable/round_logout_24"
+            app:key="@string/pref_log_out"
+            app:summary="登出当前账号"
+            app:title="退出登录" />
+
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
+        app:key="other_category"
+        app:title="其他">
+
+        <com.bqliang.running.diary.ui.base.MaterialSwitchPreference
+            app:defaultValue="true"
+            app:icon="@drawable/round_bug_report_24"
+            app:summary="我们使用 Microsoft 提供的 Visual Studio App Center 来收集错误报告，以便我们更好地改进应用。收集的信息是匿名的，我们无法追溯到独立的用户或设备。\n请参阅隐私政策了解更多详情。"
+            app:title="发送错误报告" />
+
+        <Preference
+            app:summary="了解我们收集的信息以及如何使用它。"
+            app:title="隐私政策" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

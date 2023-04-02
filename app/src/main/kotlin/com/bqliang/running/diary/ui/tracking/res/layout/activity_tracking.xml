@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.bqliang.running.diary.services.TrackingService.Companion" />
+
+        <variable
+            name="viewModel"
+            type="com.bqliang.running.diary.ui.tracking.TrackingViewModel" />
+
+        <import type="com.bqliang.running.diary.ui.base.MyMapView.Dimension" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
+
+            <!-- 地图 -->
+            <com.bqliang.running.diary.ui.base.MyMapView
+                android:id="@+id/map_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:mapDimension="@{viewModel.dimension}"
+                android:mapType="@{viewModel.mapType}" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/map_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- 全屏 UI -->
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/full_screen_ui"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:constraint_referenced_ids="pip_btn,switchDimensionBtn,layerSwitchBtn,zoomBtns" />
+
+            <!-- pip 按钮 -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/pip_btn"
+                style="?attr/materialIconButtonFilledTonalStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="8dp"
+                android:visibility="gone"
+                app:icon="@drawable/round_branding_watermark_24"
+                app:layout_constraintRight_toLeftOf="@id/switchDimensionBtn"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlHardcoded" />
+
+            <!-- 2D/3D 按钮 -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/switchDimensionBtn"
+                style="?attr/materialIconButtonFilledTonalStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="8dp"
+                app:icon="@{viewModel.dimension == Dimension.TWO ? @drawable/icon_3d : @drawable/icon_2d}"
+                app:layout_constraintRight_toLeftOf="@id/layerSwitchBtn"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:icon="@drawable/icon_2d"
+                tools:ignore="RtlHardcoded" />
+
+            <!-- 切换地图图层按钮 -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/layerSwitchBtn"
+                style="?attr/materialIconButtonFilledTonalStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="8dp"
+                android:contentDescription="切换图层"
+                app:icon="@drawable/outline_layers_24"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlHardcoded" />
+
+            <!-- 缩放按钮 START -->
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/zoomBtns"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="136dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:selectionRequired="false">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/zoomInBtn"
+                    style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    app:icon="@drawable/round_add_24"
+                    app:iconGravity="textEnd" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/zoomOutBtn"
+                    style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@drawable/round_remove_24"
+                    app:iconGravity="textEnd" />
+
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+            <!-- 缩放按钮 END -->
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline80"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.8" />
+
+            <!-- pip 显示里程 START -->
+            <FrameLayout
+                android:id="@+id/pip_ui"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="?attr/colorSurfaceInverse"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/guideline80"
+                tools:visibility="visible">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/pip_distance"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:autoSizeTextType="uniform"
+                    android:gravity="center"
+                    android:textColor="?attr/colorOnSurfaceInverse" />
+
+            </FrameLayout>
+            <!-- pip 显示里程 END -->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RelativeLayout
+            android:id="@+id/standard_bottom_sheet_container"
+            style="@style/Widget.Material3.BottomSheet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            app:behavior_hideable="false"
+            app:behavior_peekHeight="@dimen/tracking_bottomSheet_peek_height"
+            app:layout_behavior="@string/bottom_sheet_behavior">
+
+            <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+                android:id="@+id/drag_handle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true" />
+
+            <include
+                android:id="@+id/tracking_bottom_sheet_card_collapsed"
+                layout="@layout/tracking_bottom_sheet_card_collapsed2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/drag_handle"
+                bind:data="@{data}"
+                bind:viewModel="@{viewModel}" />
+
+            <include
+                android:id="@+id/tracking_bottom_sheet_card_expanded"
+                layout="@layout/tracking_bottom_sheet_card_expanded2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/drag_handle"
+                android:visibility="invisible"
+                bind:data="@{data}"
+                bind:viewModel="@{viewModel}" />
+
+        </RelativeLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viweModle"
+            type="com.bqliang.running.diary.ui.detail.DetailViewModel" />
+
+        <import type="com.bqliang.running.diary.utils.Converter" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:text="@{Converter.millsSecondsDateTimeFormat(viweModle.run.startTime)}"
+            android:id="@+id/run_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="2023/02/28 12:00" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text='@{String.format("%.2f",viweModle.run.distanceInMeter / 1000)}'
+            android:textAppearance="@style/TextAppearance.Material3.DisplayLarge"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/run_time"
+            tools:text="0.75" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/distance_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:text="公里"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+            app:layout_constraintBaseline_toBaselineOf="@id/distance"
+            app:layout_constraintLeft_toRightOf="@+id/distance" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <!-- 运动时间 -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="44dp"
+            android:layout_marginTop="30dp"
+            android:text="运动时间"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/distance" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="@{Converter.millisecondsHmsFormat(viweModle.run.durationInMilliseconds)}"
+            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+            app:layout_constraintLeft_toLeftOf="@id/title_duration"
+            app:layout_constraintTop_toBottomOf="@id/title_duration"
+            tools:text="00:00:00" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/icon_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="#43a047"
+            app:layout_constraintBottom_toBottomOf="@id/duration"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/title_duration"
+            app:layout_constraintTop_toTopOf="@id/title_duration"
+            app:srcCompat="@drawable/outline_timer_40" />
+
+        <!-- 卡路里 -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title_calories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="44dp"
+            android:layout_marginTop="16dp"
+            android:text="消耗卡路里"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            app:layout_constraintLeft_toLeftOf="@id/guideline"
+            app:layout_constraintBaseline_toBaselineOf="@id/title_duration" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/calories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="@{String.valueOf(viweModle.run.caloriesInKcal)}"
+            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+            app:layout_constraintLeft_toLeftOf="@id/title_calories"
+            app:layout_constraintTop_toBottomOf="@id/title_calories"
+            tools:text="21" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="千卡"
+            android:layout_marginLeft="2dp"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            app:layout_constraintBaseline_toBaselineOf="@id/calories"
+            app:layout_constraintLeft_toRightOf="@id/calories" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/icon_calories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="#e64a19"
+            app:layout_constraintBottom_toBottomOf="@id/calories"
+            app:layout_constraintLeft_toLeftOf="@id/guideline"
+            app:layout_constraintRight_toLeftOf="@id/title_calories"
+            app:layout_constraintTop_toTopOf="@id/title_calories"
+            app:srcCompat="@drawable/fire_40" />
+
+        <!-- 平均配速 -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title_pace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="44dp"
+            android:layout_marginTop="20dp"
+            android:text="平均配速"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/duration" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/pace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="@{viweModle.paceString}"
+            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+            app:layout_constraintLeft_toLeftOf="@id/title_pace"
+            app:layout_constraintTop_toBottomOf="@id/title_pace"
+            tools:text="7'45''" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/公里"
+            android:layout_marginLeft="2dp"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            app:layout_constraintBaseline_toBaselineOf="@id/pace"
+            app:layout_constraintLeft_toRightOf="@id/pace" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/icon_pace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="#1976d2"
+            app:layout_constraintBottom_toBottomOf="@id/pace"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/title_pace"
+            app:layout_constraintTop_toTopOf="@id/title_pace"
+            app:srcCompat="@drawable/outline_speed_40" />
+
+        <!-- 平均速度 -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="44dp"
+            android:layout_marginTop="16dp"
+            android:text="平均速度"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            app:layout_constraintLeft_toLeftOf="@id/guideline"
+            app:layout_constraintBaseline_toBaselineOf="@id/title_pace" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text='@{String.format("%.2f", viweModle.speedInKmPerHour)}'
+            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+            app:layout_constraintLeft_toLeftOf="@id/title_speed"
+            app:layout_constraintTop_toBottomOf="@id/title_speed"
+            tools:text="10.5" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="公里/小时"
+            android:layout_marginLeft="2dp"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            app:layout_constraintBaseline_toBaselineOf="@id/speed"
+            app:layout_constraintLeft_toRightOf="@id/speed" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/icon_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="#5e35b1"
+            app:layout_constraintBottom_toBottomOf="@id/speed"
+            app:layout_constraintLeft_toLeftOf="@id/guideline"
+            app:layout_constraintRight_toLeftOf="@id/title_speed"
+            app:layout_constraintTop_toTopOf="@id/title_speed"
+            app:srcCompat="@drawable/outline_speed_40" />
+
+        <!-- 平均步频 -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title_cadence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="44dp"
+            android:layout_marginTop="20dp"
+            android:text="平均步频"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pace" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/cadence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="@{String.valueOf(viweModle.cadence)}"
+            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+            app:layout_constraintLeft_toLeftOf="@id/title_cadence"
+            app:layout_constraintTop_toBottomOf="@id/title_cadence"
+            tools:text="83" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="步/分钟"
+            android:layout_marginLeft="2dp"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            app:layout_constraintBaseline_toBaselineOf="@id/cadence"
+            app:layout_constraintLeft_toRightOf="@id/cadence" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/icon_cadence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="#1976d2"
+            app:layout_constraintBottom_toBottomOf="@id/cadence"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/title_pace"
+            app:layout_constraintTop_toTopOf="@id/title_cadence"
+            app:srcCompat="@drawable/footprint_40" />
+
+        <!-- 步数 -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title_step"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="44dp"
+            android:layout_marginTop="16dp"
+            android:text="步数"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            app:layout_constraintLeft_toLeftOf="@id/guideline"
+            app:layout_constraintBaseline_toBaselineOf="@id/title_cadence" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/step"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="@{String.valueOf(viweModle.run.stepCount)}"
+            android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+            app:layout_constraintLeft_toLeftOf="@id/title_step"
+            app:layout_constraintTop_toBottomOf="@id/title_step"
+            tools:text="2000" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="步"
+            android:layout_marginLeft="2dp"
+            android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            app:layout_constraintBaseline_toBaselineOf="@id/step"
+            app:layout_constraintLeft_toRightOf="@id/step" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/icon_step"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="#f57c00"
+            app:layout_constraintBottom_toBottomOf="@id/step"
+            app:layout_constraintLeft_toLeftOf="@id/guideline"
+            app:layout_constraintRight_toLeftOf="@id/title_step"
+            app:layout_constraintTop_toTopOf="@id/title_step"
+            app:srcCompat="@drawable/baseline_snowshoeing_24" />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

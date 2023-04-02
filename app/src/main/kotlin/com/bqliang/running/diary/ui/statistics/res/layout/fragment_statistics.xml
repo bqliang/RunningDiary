@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.bqliang.running.diary.ui.statistics.StatisticsViewModel" />
+    </data>
+
+    <!-- fitsSystemWindowsInsets 设置 bottom padding -->
+    <ScrollView
+        android:transitionGroup="true"
+        app:fitsSystemWindowsInsets="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- 总计卡片 START -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/animation_view"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:adjustViewBounds="true"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:lottie_autoPlay="true"
+                        app:lottie_fileName="map.json"
+                        tools:layout_height="200dp" />
+
+                    <!-- 次数 START -->
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/icon_run_counter"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/ic_run"
+                        app:layout_constraintEnd_toStartOf="@+id/run_counter"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/animation_view" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/run_counter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:text="@{String.valueOf(viewModel.runCount)}"
+                        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                        app:layout_constraintBottom_toBottomOf="@id/icon_run_counter"
+                        app:layout_constraintEnd_toStartOf="@+id/run_counter_unit"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toEndOf="@+id/icon_run_counter"
+                        app:layout_constraintTop_toTopOf="@id/icon_run_counter"
+                        tools:text="604" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/run_counter_unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:text="次"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                        app:layout_constraintBaseline_toBaselineOf="@id/run_counter"
+                        app:layout_constraintEnd_toEndOf="@id/guideline"
+                        app:layout_constraintStart_toEndOf="@+id/run_counter" />
+                    <!-- 次数 END -->
+
+                    <!-- 步数 START -->
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/icon_step_counter"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:padding="5dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/ic_shoe"
+                        app:layout_constraintEnd_toStartOf="@+id/step_counter"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toEndOf="@+id/run_counter_unit"
+                        app:layout_constraintTop_toTopOf="@id/icon_run_counter" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/step_counter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:text="@{String.valueOf(viewModel.totalSteps)}"
+                        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                        app:layout_constraintBottom_toBottomOf="@id/icon_step_counter"
+                        app:layout_constraintEnd_toStartOf="@+id/step_counter_unit"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/icon_step_counter"
+                        app:layout_constraintTop_toTopOf="@id/icon_step_counter"
+                        tools:text="899" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/step_counter_unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:text="步"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                        app:layout_constraintBaseline_toBaselineOf="@id/step_counter"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/step_counter" />
+                    <!-- 步数 END -->
+
+                    <!-- 里程 START -->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="4dp"
+                        android:text="合计"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                        app:layout_constraintBaseline_toBaselineOf="@id/total_distance"
+                        app:layout_constraintRight_toLeftOf="@id/total_distance" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/total_distance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text='@{String.format("%.2f", viewModel.totalDistanceInKm)}'
+                        android:textAppearance="@style/TextAppearance.Material3.DisplayMedium"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/run_counter"
+                        tools:text="78.62" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:text="公里"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                        app:layout_constraintBaseline_toBaselineOf="@id/total_distance"
+                        app:layout_constraintLeft_toRightOf="@id/total_distance" />
+                    <!-- 里程 END -->
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.5" />
+
+                    <!-- 时长 START -->
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/icon_duration"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="8dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/ic_timer"
+                        app:layout_constraintEnd_toStartOf="@+id/duration"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/total_distance" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/duration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:text='@{String.format("%.2f", viewModel.totalDurationInHour)}'
+                        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                        app:layout_constraintBottom_toBottomOf="@id/icon_duration"
+                        app:layout_constraintEnd_toStartOf="@+id/duration_unit"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/icon_duration"
+                        app:layout_constraintTop_toTopOf="@id/icon_duration"
+                        tools:text="60.45" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/duration_unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:text="小时"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                        app:layout_constraintBaseline_toBaselineOf="@id/duration"
+                        app:layout_constraintEnd_toEndOf="@id/guideline"
+                        app:layout_constraintStart_toEndOf="@+id/duration" />
+                    <!-- 时长 END -->
+
+                    <!-- 卡路里 START -->
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/icon_calories"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="8dp"
+                        android:padding="5dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/ic_calories"
+                        app:layout_constraintEnd_toStartOf="@+id/calories"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toEndOf="@+id/duration_unit"
+                        app:layout_constraintTop_toBottomOf="@id/total_distance" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/calories"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:text="@{String.valueOf(viewModel.totalCaloriesInKcal)}"
+                        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+                        app:layout_constraintBottom_toBottomOf="@id/icon_calories"
+                        app:layout_constraintEnd_toEndOf="@id/icon_calories"
+                        app:layout_constraintEnd_toStartOf="@+id/calories_unit"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/icon_calories"
+                        app:layout_constraintTop_toTopOf="@id/icon_calories"
+                        tools:text="899" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/calories_unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:text="千卡"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                        app:layout_constraintBaseline_toBaselineOf="@id/calories"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/calories" />
+                    <!-- 卡路里 END -->
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+            <!-- 总计卡片 END -->
+
+            <!-- 目标卡片 START -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <com.mindorks.RadialProgressBar
+                        android:id="@+id/radial_progress_bar"
+                        centerMaxProgress="@{viewModel.monthDistanceGoalInKm}"
+                        innerMaxProgress="@{viewModel.yearDistanceGoalInKm}"
+                        outerMaxProgress="@{viewModel.weekDistanceGoalInKm}"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:layout_gravity="center_horizontal"
+                        app:centerProgress="@{(int) Math.round(viewModel.distanceInKmThisMonth)}"
+                        app:hasOneProgressView="false"
+                        app:hasTwoProgressView="false"
+                        app:innerProgress="@{(int) Math.round(viewModel.distanceInKmThisYear)}"
+                        app:isAnimationOn="true"
+                        app:outerProgress="@{(int) Math.round(viewModel.distanceInKmThisWeek)}"
+                        app:useRoundedCorner="true" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="16dp">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="周目标：" />
+
+                        <com.skydoves.progressview.ProgressView
+                            android:id="@+id/progress_view_week"
+                            progressViewMax="@{(float) viewModel.weekDistanceGoalInKm}"
+                            progressViewProgress="@{(float) viewModel.distanceInKmThisWeek}"
+                            android:layout_width="0dp"
+                            android:layout_height="30dp"
+                            android:layout_weight="1"
+                            app:progressView_autoAnimate="true"
+                            app:progressView_colorBackground="?attr/colorSurfaceVariant"
+                            app:progressView_colorProgress="#f02f62"
+                            app:progressView_labelColorInner="@color/progressView_labelColorInner"
+                            app:progressView_labelColorOuter="@color/progressView_labelColorOuter"
+                            app:progressView_labelSize="13sp"
+                            app:progressView_progressFromPrevious="true"
+                            app:progressView_radius="12dp" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="16dp">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="月目标：" />
+
+                        <com.skydoves.progressview.ProgressView
+                            android:id="@+id/progress_view_month"
+                            progressViewMax="@{(float) viewModel.monthDistanceGoalInKm}"
+                            progressViewProgress="@{(float) viewModel.distanceInKmThisMonth}"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            app:progressView_autoAnimate="true"
+                            app:progressView_colorBackground="?attr/colorSurfaceVariant"
+                            app:progressView_colorProgress="#bdfe01"
+                            app:progressView_labelColorInner="@color/progressView_labelColorInner"
+                            app:progressView_labelColorOuter="@color/progressView_labelColorOuter"
+                            app:progressView_labelSize="13sp"
+
+                            app:progressView_progressFromPrevious="true"
+                            app:progressView_radius="12dp" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="16dp">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="年目标：" />
+
+                        <com.skydoves.progressview.ProgressView
+                            android:id="@+id/progress_view_year"
+                            progressViewMax="@{(float) viewModel.yearDistanceGoalInKm}"
+                            progressViewProgress="@{(float) viewModel.distanceInKmThisYear}"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            app:progressView_autoAnimate="true"
+                            app:progressView_colorBackground="?attr/colorSurfaceVariant"
+                            app:progressView_colorProgress="#08fea4"
+                            app:progressView_labelColorInner="@color/progressView_labelColorInner"
+                            app:progressView_labelColorOuter="@color/progressView_labelColorOuter"
+                            app:progressView_labelSize="13sp"
+                            app:progressView_progressFromPrevious="true"
+                            app:progressView_radius="12dp" />
+
+                    </LinearLayout>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </com.google.android.material.card.MaterialCardView>
+            <!-- 目标卡片 END -->
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </ScrollView>
+</layout>

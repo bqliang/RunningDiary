@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.bqliang.running.diary.ui.body.AddBodyViewModel" />
+
+        <import type="com.bqliang.running.diary.utils.Converter" />
+    </data>
+
+    <RelativeLayout
+        android:transitionGroup="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/item_date"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_alignParentTop="true"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                app:srcCompat="@drawable/round_date_range_24" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:layout_toRightOf="@+id/icon_date"
+                android:text="日期"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="16dp"
+                android:text="@{Converter.millisSecondsDateFormat(viewModel.dateInMs)}"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                tools:text="2023/02/28" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/item_height"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_below="@+id/item_date"
+            android:background="?attr/selectableItemBackground">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                app:srcCompat="@drawable/round_monitor_weight_24" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/height_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:layout_toRightOf="@+id/icon_height"
+                android:text="身高 (cm)"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/height"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/height_title"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_toRightOf="@+id/height_title"
+                android:background="@android:color/transparent"
+                android:gravity="end"
+                android:text='@{String.format("%.1f", viewModel.heightInCm)}'
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                tools:text="172.5" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/item_weight"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_below="@+id/item_height"
+            android:background="?attr/selectableItemBackground">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                app:srcCompat="@drawable/round_monitor_weight_24" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/weight_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:layout_toRightOf="@+id/icon_weight"
+                android:text="体重 (kg)"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/weight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/weight_title"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_toRightOf="@+id/weight_title"
+                android:background="@android:color/transparent"
+                android:gravity="end"
+                android:text='@{String.format("%.1f", viewModel.weightInKg)}'
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                tools:text="55" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/item_bmi"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_below="@+id/item_weight">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_bmi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                app:srcCompat="@drawable/round_monitor_weight_24" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/bmi_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:layout_toRightOf="@+id/icon_bmi"
+                android:text="BMI 值"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/bmi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/bmi_title"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="16dp"
+                android:text="@{viewModel.bmiString}"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                tools:text="23.0 正常" />
+
+        </RelativeLayout>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            app:layout_fitsSystemWindowsInsets="bottom"
+            android:id="@+id/fab_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="保存"
+            app:icon="@drawable/round_save_24" />
+
+    </RelativeLayout>
+</layout>

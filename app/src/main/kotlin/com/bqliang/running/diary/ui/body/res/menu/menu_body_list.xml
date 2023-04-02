@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_weight_chart"
+        android:icon="@drawable/round_insert_chart_outlined_24"
+        android:title="体重趋势"
+        app:showAsAction="always"
+        tools:ignore="HardcodedText" />
+</menu>
