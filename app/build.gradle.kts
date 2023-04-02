@@ -146,6 +146,8 @@ dependencies {
             )
         )
     )
+    // support recyclerview swipe to delete
+    implementation("it.xabaras.android:recyclerview-swipedecorator:1.4")
     // CodeLocator
     implementation("com.bytedance.tools.codelocator:codelocator-core:2.0.2")
     // AppIntro
