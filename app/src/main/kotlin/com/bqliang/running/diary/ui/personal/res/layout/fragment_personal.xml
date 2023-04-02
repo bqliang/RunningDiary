@@ -289,6 +289,47 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px" />
 
+            <RelativeLayout
+                android:id="@+id/item_password"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/listPreferredItemHeightSmall"
+                android:background="?attr/colorSurface"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingStart="?attr/listPreferredItemPaddingStart"
+                android:paddingEnd="?attr/listPreferredItemPaddingEnd">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="修改密码"
+                    tools:ignore="HardcodedText,RelativeOverlap,RtlHardcoded" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icon_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/round_chevron_right_24"
+                    tools:ignore="RtlHardcoded" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@id/icon_password"
+                    tools:ignore="RelativeOverlap,RtlHardcoded"
+                    android:text="xxxxxxxx" />
+            </RelativeLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1px" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="18dp"

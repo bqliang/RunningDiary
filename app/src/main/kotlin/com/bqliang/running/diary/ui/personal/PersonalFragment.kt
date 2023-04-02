@@ -16,7 +16,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import cn.leancloud.LCFile
 import cn.leancloud.LCUser
+import cn.leancloud.types.LCNull
 import com.bqliang.running.diary.R
+import com.bqliang.running.diary.databinding.DialogUpdatePasswordBinding
 import com.bqliang.running.diary.databinding.EditTextBinding
 import com.bqliang.running.diary.databinding.FragmentPersonalBinding
 import com.bqliang.running.diary.ui.base.BaseAlertDialogBuilder
@@ -132,6 +134,26 @@ class PersonalFragment : Fragment() {
             }
         }
 
+        binding.itemPassword.setOnClickListener {
+            showUpdatePasswordDialog { oldPassword, newPassword ->
+                LCUser.currentUser().updatePasswordInBackground(oldPassword, newPassword)
+                    .subscribe(object : Observer<LCNull> {
+                        override fun onSubscribe(d: Disposable) {
+                        }
+
+                        override fun onNext(t: LCNull) {
+                            "密码修改成功".showToast()
+                        }
+
+                        override fun onError(e: Throwable) {
+                            e.message?.showToast()
+                        }
+
+                        override fun onComplete() {  }
+                    })
+            }
+        }
+
         binding.itemShortId.setOnLongClickListener {
             // 将 LcUser 的 short id 复制到系统剪贴板
             val shortId = LCUser.currentUser().shortId
@@ -143,7 +165,7 @@ class PersonalFragment : Fragment() {
         }
 
         binding.itemGoalWeek.setOnClickListener {
-            showEditTextDialog("修改周目标", activityViewModel.goalWeek.value.toString(),"公里") { text ->
+            showEditTextDialog("修改周目标", activityViewModel.goalWeek.value.toString(), "公里") { text ->
                 val goal: Int
                 try {
                     goal = text.toInt()
@@ -177,7 +199,7 @@ class PersonalFragment : Fragment() {
         }
 
         binding.itemGoalYear.setOnClickListener {
-            showEditTextDialog("修改年目标", activityViewModel.goalYear.value.toString(),"公里") { text ->
+            showEditTextDialog("修改年目标", activityViewModel.goalYear.value.toString(), "公里") { text ->
                 val goal: Int
                 try {
                     goal = text.toInt()
@@ -195,7 +217,12 @@ class PersonalFragment : Fragment() {
     }
 
 
-    private fun showEditTextDialog(title: String, curValue: String, suffixText: String? = null, onBlock: (String) -> Unit) {
+    private fun showEditTextDialog(
+        title: String,
+        curValue: String,
+        suffixText: String? = null,
+        onBlock: (String) -> Unit
+    ) {
         var mEditTextBinding: EditTextBinding? =
             EditTextBinding.inflate(layoutInflater, null, false)
         val editTextBinding: EditTextBinding = mEditTextBinding!!
@@ -257,6 +284,27 @@ class PersonalFragment : Fragment() {
         }
 
         dialog.show(childFragmentManager, "birthday_picker")
+    }
+
+
+    private fun showUpdatePasswordDialog(onBlock: (oldPassword: String, newPassword: String) -> Unit) {
+        val dialogBinding = DialogUpdatePasswordBinding.inflate(layoutInflater, null, false)
+        BaseAlertDialogBuilder(requireContext())
+            .setTitle("修改密码")
+            .setView(dialogBinding.root)
+            .setPositiveButton("确定") { _, _ ->
+                val oldPassword = dialogBinding.etOldPassword.text.toString()
+                val newPassword = dialogBinding.etNewPassword.text.toString()
+                val confirmPassword = dialogBinding.etConfirmPassword.text.toString()
+                if (newPassword != confirmPassword) {
+                    "两次输入的密码不一致".showToast()
+                    return@setPositiveButton
+                }
+                onBlock(oldPassword, newPassword)
+            }
+            .setNegativeButton("取消", null)
+            .create()
+            .show()
     }
 
 
