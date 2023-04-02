@@ -122,7 +122,7 @@ class AddBodyFragment : Fragment() {
             decimal.minValue = 0
             decimal.maxValue = 9
             integer.value = currentValue.toInt()
-            decimal.minValue = ((currentValue - currentValue.toInt()) * 10).toInt()
+            decimal.value = ((currentValue - currentValue.toInt()) * 10).toInt()
             suffix.text = unitText
         }
 
