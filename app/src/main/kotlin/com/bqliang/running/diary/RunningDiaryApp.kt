@@ -3,13 +3,18 @@ package com.bqliang.running.diary
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import android.content.Intent
 import cn.leancloud.LCLogger
+import cn.leancloud.LCUser
 import cn.leancloud.LeanCloud
 import com.amap.api.maps.MapsInitializer
 import com.baidu.trace.LBSTraceClient
+import com.bqliang.running.diary.ui.intro.IntroActivity
+import com.bqliang.running.diary.utils.showToast
 import com.google.android.material.color.DynamicColors
 import com.tencent.mmkv.MMKV
 import dagger.hilt.android.HiltAndroidApp
+import kotlinx.coroutines.delay
 import timber.log.Timber
 
 
@@ -25,6 +30,17 @@ class RunningDiaryApp : Application() {
     companion object {
         lateinit var context: Context
         lateinit var lbsTraceClient: LBSTraceClient
+
+        suspend fun logoutAndRestartApp() {
+            MMKV.defaultMMKV().putBoolean(IntroActivity.FIRST_START, true)
+            LCUser.logOut()
+            "重置成功，3秒后退出".showToast()
+            delay(3000)
+            // restart app
+            val intent = context.packageManager.getLaunchIntentForPackage(context.packageName)
+            intent!!.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            context.startActivity(intent)
+        }
     }
 
     override fun onCreate() {

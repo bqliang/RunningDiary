@@ -9,13 +9,16 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.bqliang.running.diary.R
+import com.bqliang.running.diary.RunningDiaryApp
 import com.bqliang.running.diary.databinding.DialogRetrievePasswordBinding
 import com.bqliang.running.diary.databinding.FragmentLoginBinding
 import com.bqliang.running.diary.ui.base.BaseAlertDialogBuilder
 import com.bqliang.running.diary.utils.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.transition.MaterialSharedAxis
+import kotlinx.coroutines.launch
 import rikka.html.text.toHtml
 
 class LoginFragment : Fragment() {
@@ -59,6 +62,12 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.lottie.setRepeatClickListener {
+            lifecycleScope.launch {
+                RunningDiaryApp.logoutAndRestartApp()
+            }
+        }
 
         binding.loginBtn.setOnClickListener { btn ->
             btn.hideKeyboard()

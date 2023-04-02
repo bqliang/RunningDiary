@@ -2,9 +2,14 @@ package com.bqliang.running.diary.ui.about
 
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.lifecycleScope
 import com.bqliang.running.diary.BuildConfig
 import com.bqliang.running.diary.R
+import com.bqliang.running.diary.RunningDiaryApp
+import com.bqliang.running.diary.utils.setRepeatClickListener
 import com.drakeet.about.*
+import kotlinx.coroutines.launch
+
 
 class AboutActivity : AbsAboutActivity() {
 
@@ -13,6 +18,12 @@ class AboutActivity : AbsAboutActivity() {
         icon.setImageDrawable(appIcon)
         slogan.text = "跑步日记，记录健康与美好"
         version.text = BuildConfig.VERSION_NAME
+
+        icon.setRepeatClickListener {
+            lifecycleScope.launch {
+                RunningDiaryApp.logoutAndRestartApp()
+            }
+        }
     }
 
     override fun onItemsCreated(items: MutableList<Any>) {
