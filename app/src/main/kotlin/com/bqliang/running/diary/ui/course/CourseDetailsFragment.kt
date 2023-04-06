@@ -9,6 +9,7 @@ import androidx.navigation.fragment.navArgs
 import com.bqliang.running.diary.databinding.FragmentCourseDetailsBinding
 import com.bqliang.running.diary.utils.startActivity
 import com.bumptech.glide.Glide
+import com.bumptech.glide.Priority
 
 class CourseDetailsFragment: Fragment() {
 
@@ -31,7 +32,10 @@ class CourseDetailsFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val course = args.course
-        Glide.with(this).load(course.imageUrl).into(binding.imageView)
+        Glide.with(this)
+            .load(course.imageUrl)
+            .priority(Priority.HIGH)
+            .into(binding.imageView)
         binding.tvShortDesc.text = course.shortDescription
         binding.tvLevel.text = course.levelString
         binding.tvDuration.text = "${course.distanceInMinute} 分钟"
